@@ -21,7 +21,7 @@ class Room {
         this._getReq();
     }
     drawChat(room) {
-        let block = document.getElementById('rooms');
+        let block = document.querySelector(this.container);
         block.insertAdjacentHTML('beforeend', `<div class="room">${room}</div>`);
     }
     _getReq() {
