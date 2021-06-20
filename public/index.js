@@ -1,49 +1,37 @@
-class Room {
-    constructor() {
-        this.title;
-        this.rooms = [];
-        this.container = '#rooms';
-
-        this._init();
-    }
-
-    _init() {
-        this.getReq()
-        setTimeout(() => {
-            this.getRooms(this.rooms[0]);
-            console.log(this.rooms[0])
-        }, 100);
-    }
-
-    drawChat(room) {
-        let block = document.createElement('div');
-        block.innerHTML = `<div class="room">${room}</div>`
-        document.querySelector(this.container).append(block);
-    }
-
-    getReq() {
+function ajax(method, url) {
+    return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', '/rooms');
+        xhr.open(method, url);
         xhr.send();
         xhr.onload = () => {
             if (xhr.status != 200) {
-                console.error('err');
+                reject('Error');
             } else {
-                console.log('esss');
-                this.rooms.push(JSON.parse(xhr.response));
-                console.log(this.rooms)
+                resolve(xhr.response);
             }
         }
-        return this.rooms;
-    }
+    })
+}
 
+class Room {
+    constructor() {
+        this.rooms = [];
+        this.container = '#rooms';
+
+        this._getReq();
+    }
+    drawChat(room) {
+        let block = document.getElementById('rooms');
+        block.insertAdjacentHTML('beforeend', `<div class="room">${room}</div>`);
+    }
+    _getReq() {
+        return ajax('GET', '/rooms').then(result => this.getRooms(JSON.parse(result)));
+    }
     getRooms(arr) {
         arr.forEach(el => {
-            console.log(el)
             this.drawChat(el.Title);
         });
     }
-
 }
 
 new Room();
