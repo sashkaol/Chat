@@ -16,12 +16,13 @@ function ajax(method, url) {
 class Room {
     constructor() {
         this.rooms = [];
-        this.container = '#rooms';
+        this.container = 'rooms';
 
+        this._renderPage();
         this._getReq();
     }
     drawChat(room) {
-        let block = document.querySelector(this.container);
+        let block = document.getElementById(this.container);
         block.insertAdjacentHTML('beforeend', `<div class="room">${room}</div>`);
     }
     _getReq() {
@@ -32,6 +33,19 @@ class Room {
             this.drawChat(el.Title);
         });
     }
+    _renderPage() {
+        document.getElementById('content').insertAdjacentHTML('beforeend', 
+            `<div id="${this.container}" class="rooms">
+                Мои переписки
+            </div>`
+        )
+    }
 }
 
 new Room();
+
+// class User {
+//     constructor() {
+        
+//     }
+// }
