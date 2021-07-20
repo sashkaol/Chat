@@ -41,3 +41,5 @@
 -- ALTER TABLE Chat.Room ADD COLUMN Title VARCHAR(50) NOT NULL;
 
 -- INSERT INTO Chat.Room VALUES (NULL, 'Избранное');
+
+ALTER TABLE Chat.User DROP COLUMN User.Salt;

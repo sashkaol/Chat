@@ -35,7 +35,7 @@ header {
 .log-out:hover {
     background-color: rgb(239, 215, 217);
 }
-.content {
+main {
     max-width: 1140px;
     margin: 85px auto;
     display: flex;
@@ -69,4 +69,36 @@ header {
     border: aliceblue 1px solid;
     padding: 5px;
     box-sizing: border-box;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding: 10px;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+input {
+    border-radius: 10px;
+    border: 1px rgb(215, 229, 239) solid;
+    outline: none;
+    height: 30px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+button {
+    border-radius: 10px;
+    background-color: white;
+    height: 32px;
+    border: none;
+    border: 1px rgb(215, 229, 239) solid;
+}
+button:hover {
+    background-color: rgb(215, 229, 239);
+    cursor: pointer;
 }

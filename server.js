@@ -30,4 +30,13 @@ app.get('/rooms', (req, res) => {
     res.send(rooms)
 })
 
+// const data = {
+//   login
+// }
+
+// connection.query('INSERT INTO Chat.User VALUES (NULL, )')
+// app.post('/registrate', (req, res) => {
+//   res.send('anddd');
+// })
+
 app.listen(8888);

@@ -13,7 +13,12 @@ function ajax(method, url) {
     })
 }
 
-class Room {
+function clearMain() {
+    const main = document.getElementById('content');
+    while (main.firstChild) { main.removeChild(main.firstChild) };
+}
+
+class Rooms {
     constructor() {
         this.rooms = [];
         this.container = 'rooms';
@@ -34,6 +39,7 @@ class Room {
         });
     }
     _renderPage() {
+        clearMain();
         document.getElementById('content').insertAdjacentHTML('beforeend', 
             `<div id="${this.container}" class="rooms">
                 Мои переписки
@@ -42,10 +48,77 @@ class Room {
     }
 }
 
-new Room();
+new Rooms();
 
-// class User {
-//     constructor() {
-        
-//     }
-// }
+class NewUser {
+    constructor() {
+        this.container = 'registration';
+
+        this._renderForm();
+    }
+    _renderForm() {
+        clearMain();
+        document.getElementById('content').insertAdjacentHTML('beforeend', 
+            `<form id="${this.container}" action="/registrate">
+                <label for="login">
+                    Логин
+                    <input name="registrate" type="text" id="login" reqiured/>
+                </label>
+                <label for="fullName">
+                    Имя
+                    <input name="registrate" type="text" id="fullName" reqiured/>
+                </label>
+                <label for="password">
+                    Пароль
+                    <input name="registrate" type="password" id="password" reqiured/>
+                </label>
+                <label for="password-repeat">
+                    Повторите пароль
+                    <input name="registrate" type="password" id="password-repeat" reqiured/>
+                </label>
+                <button type="submit">Зарегистрироваться</button>
+            </form>`
+        )
+    }
+    // sendForm() {
+    //     return ajax('POST', '/newuser').then(console.log(result));
+    // }
+}
+
+class ActiveUser {
+    constructor() {
+        this.login;
+        this.password;
+
+    }
+}
+
+// new NewUser();
+
+class Message {
+    constructor() {
+        this.container = 'chat';
+        this.sender;
+
+        this._renderChat();
+    }
+    sendMessage() {
+        return ajax('POST', '/chat')
+    }
+    takeMessage() {
+        return ajax('GET', '/chat')
+    }
+    drawMessage() {
+        document.getElementById(`${this.container}`).insertAdjacentHTML('beforeend', 
+            `<div>$</div>`
+        )
+    }
+    _renderChat() {
+        clearMain();
+        document.getElementById('content').insertAdjacentHTML('beforeend', 
+            `<div id=""${this.container}>
+                s
+            </div>`
+        )
+    }
+}
